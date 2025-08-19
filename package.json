@@ -1,0 +1,25 @@
+{
+  "name": "asynchronous",
+  "version": "1.0.0",
+  "description": "This repo contains starter files and the finished project files for all the projects contained in the course (complete repo size is **288MB**).",
+  "homepage": "https://github.com/Taylor-Jacquemin/Nodejs_Express_MongoDB_the-complete-bootcamp#readme",
+  "bugs": {
+    "url": "https://github.com/Taylor-Jacquemin/Nodejs_Express_MongoDB_the-complete-bootcamp/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Taylor-Jacquemin/Nodejs_Express_MongoDB_the-complete-bootcamp.git"
+  },
+  "license": "ISC",
+  "author": "Taylor G Jacquemin",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "node": "^24.6.0",
+    "nodemon": "^3.1.10"
+  },
+  "devDependencies": {}
+}

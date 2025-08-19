@@ -22,4 +22,7 @@
     "nodemon": "^3.1.10"
   },
   "devDependencies": {}
+    "nodemon": "^3.1.10",
+    "superagent": "^10.2.3"
+  }
 }

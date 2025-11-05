@@ -1,9 +1,13 @@
 const fs = require('fs');
 const express = require('express');
-
+const morgan = require('morgan');
 const app = express();
-//middleware. (a function to modify incoming request data) the data from body is added to the request object
+
+//1.MIDDLEWARES. (a function to modify incoming request data) the data from body is added to the request object
+app.use(morgan('dev'));
+
 app.use(express.json());
+
 app.use((req, res, next) => {
     console.log('Hello from the middleware 👋');
     next(); //if you don't call next() the response cycle is stopped here
@@ -17,6 +21,7 @@ const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
+// 2. ROUTE HANDLERS
 const getAllTours = (req, res)=> {
     console.log(req.requestTime);
 
@@ -100,6 +105,42 @@ const deleteTour = (req, res) => {
         data: null
     });
 };
+
+const getAllUsers = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined!'
+    })
+};
+
+const getUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined!'
+    })
+};
+
+const createUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined!'
+    })
+};
+
+const updateUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined!'
+    })
+};
+
+const deleteUser = (req, res) => {
+    res.status(500).json({
+        status: 'error',
+        message: 'This route is not yet defined!'
+    })
+};
+
 //restructuring part 1<--separated handlers to be exported to another file later
 //app.get('/api/v1/tours', getAllTours);
 //app.get('/api/v1/tours/:id', getTour);
@@ -109,6 +150,9 @@ const deleteTour = (req, res) => {
 
 //restructuring part 2<--easier to read plus we don't want to have to change 
 //data in all 5 places if url changes
+
+
+// 3. ROUTE
 app
     .route('/api/v1/tours')
     .get(getAllTours)
@@ -120,7 +164,18 @@ app
     .patch(updateTour)
     .delete(deleteTour);
 
+app
+    .route('/api/v1/users')
+    .get(getAllUsers)
+    .post(createUser);
 
+app
+    .route('/api/vq/users/:id')
+    .get(getUser)
+    .patch(updateUser)
+    .delete(deleteUser);
+    
+// 4. SERVER    
 const port = 3000;
 app.listen(port, () => {
     console.log(`App running on port ${port}...`);

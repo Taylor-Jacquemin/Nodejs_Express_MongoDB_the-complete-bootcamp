@@ -4,14 +4,25 @@ const express = require('express');
 const app = express();
 //middleware. (a function to modify incoming request data) the data from body is added to the request object
 app.use(express.json());
+app.use((req, res, next) => {
+    console.log('Hello from the middleware 👋');
+    next(); //if you don't call next() the response cycle is stopped here
+});
+app.use((req, res, next) => {
+    req.requestTime = new Date().toISOString();
+    next();
+})
 
 const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`)
 );
 
 const getAllTours = (req, res)=> {
+    console.log(req.requestTime);
+
     res.status(200).json({
         status:'success', 
+        requestedAt: req.requestTime,
         results: tours.length,
         data: {
             tours
